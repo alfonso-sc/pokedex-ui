@@ -1,0 +1,85 @@
+<!-- name -->
+<label for="name">Enter a name search term:</label>
+<input name="name" [(ngModel)]="name" (change)="updateQuery()" />
+
+<!-- generation -->
+<label for="generations">Choose a generation:</label>
+<select name="generations" [(ngModel)]="generation" (change)="updateQuery()">
+  <option></option>
+  <option
+    *ngFor="let pokemonGeneration of pokemonGenerations$ | async"
+    [value]="pokemonGeneration"
+  >
+    {{ pokemonGeneration }}
+  </option>
+</select>
+
+<!-- versions -->
+<label for="versions">Choose a version:</label>
+<select name="versions" [(ngModel)]="version" (change)="updateQuery()">
+  <option></option>
+  <option
+    *ngFor="let pokemonVersion of pokemonVersions$ | async"
+    [value]="pokemonVersion"
+  >
+    {{ pokemonVersion }}
+  </option>
+</select>
+
+<!-- types -->
+<label for="types">Choose a type:</label>
+<select name="types" [(ngModel)]="type" (change)="updateQuery()">
+  <option></option>
+  <option
+    *ngFor="let pokemonType of pokemonTypes$ | async"
+    [value]="pokemonType"
+  >
+    {{ pokemonType }}
+  </option>
+</select>
+
+<div *ngIf="pokemonResponse$ | async as pokemonResult; else noResults">
+  <div class="results">
+    <div *ngFor="let poke of pokemonResult.data">
+      <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
+    </div>
+  </div>
+
+  <div class="page-controls">
+    <button
+      [disabled]="pokemonResult.pageNumber === 0"
+      (click)="getPage(pokemonResult.pageNumber - 1)"
+    >
+      &#8592;
+    </button>
+    <span>Page: {{ pokemonResult.pageNumber + 1 }}</span>
+    <button
+      [disabled]="pokemonResult.pageNumber === pokemonResult.totalPages - 1"
+      (click)="getPage(pokemonResult.pageNumber + 1)"
+    >
+      &#8594;
+    </button>
+  </div>
+  <p>{{ pokemonResult.totalPages }} Pages</p>
+</div>
+
+<ng-template #noResults>
+  <div>No results found...</div>
+</ng-template>
+
+<!-- <ul>
+  <li *ngFor="let poke of pokemonResponse$ | async">
+    <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
+  </li>
+</ul> -->
+
+<!-- pagination elements -->
+<!-- <div class="pagination_section">
+  <a href="#"> << Previous </a>
+  <a href="#" title="Algorithm"> 1 </a>
+  <a href="#" title="DataStructure"> 2 </a>
+  <a href="#" title="Languages"> 3 </a>
+  <a href="#" title="Interview" class="active"> 4 </a>
+  <a href="#" title="practice"> 5 </a>
+  <a href="#"> Next >> </a>
+</div> -->
