@@ -30,10 +30,11 @@ export class PokemonListComponent {
   page?: number;
 
   constructor(
-    private pokemonService: PokemonService,
     private pokemonGenerationsService: PokemonGenerationsService,
-    private pokemonVersionsService: PokemonVersionsService,
+    private pokemonService: PokemonService,
     private pokemonTypeService: PokemonTypesService,
+    private pokemonVersionsService: PokemonVersionsService,
+
     private route: ActivatedRoute,
     private router: Router,
 
@@ -50,16 +51,20 @@ export class PokemonListComponent {
       this.generation = qp['generation'];
       this.version = qp['version'];
       this.type = qp['type'];
+      this.page = qp['page'];
       this.loadPokemon();
     })
   }
 
   updateQuery(): void {
+    const displayPage = this.page ? this.page + 1 : undefined;
+
     const queryParams: PokemonQueryParams = {
       name: this.name || undefined,
       generation: this.generation || undefined,
       version: this.version || undefined,
       type: this.type || undefined,
+      page: displayPage || undefined,
     }
 
     this.router.navigate(
@@ -81,7 +86,6 @@ export class PokemonListComponent {
     this.pokemonResponse$ = this
       .pokemonService
       .getMany(searchParams)
-    // .pipe(map((res) => res.data));
   }
 
   loadPokemonGenerations(): void {
@@ -104,6 +108,10 @@ export class PokemonListComponent {
 
   getPage(page: number): void {
     this.page = page;
-    this.loadPokemon();
+    this.updateQuery();
+  }
+
+  log(val: any): void {
+    console.log(val);
   }
 }

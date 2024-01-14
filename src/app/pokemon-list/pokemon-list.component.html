@@ -39,11 +39,7 @@
 </select>
 
 <div *ngIf="pokemonResponse$ | async as pokemonResult; else noResults">
-  <div class="results">
-    <div *ngFor="let poke of pokemonResult.data">
-      <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-    </div>
-  </div>
+  {{ log(pokemonResult) }}
 
   <div class="page-controls">
     <button
@@ -61,25 +57,16 @@
     </button>
   </div>
   <p>{{ pokemonResult.totalPages }} Pages</p>
+  
+  <div class="results">
+    <div *ngFor="let poke of pokemonResult.data">
+      <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
+    </div>
+  </div>
+
+
 </div>
 
 <ng-template #noResults>
   <div>No results found...</div>
 </ng-template>
-
-<!-- <ul>
-  <li *ngFor="let poke of pokemonResponse$ | async">
-    <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-  </li>
-</ul> -->
-
-<!-- pagination elements -->
-<!-- <div class="pagination_section">
-  <a href="#"> << Previous </a>
-  <a href="#" title="Algorithm"> 1 </a>
-  <a href="#" title="DataStructure"> 2 </a>
-  <a href="#" title="Languages"> 3 </a>
-  <a href="#" title="Interview" class="active"> 4 </a>
-  <a href="#" title="practice"> 5 </a>
-  <a href="#"> Next >> </a>
-</div> -->
