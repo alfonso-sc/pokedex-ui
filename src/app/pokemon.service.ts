@@ -14,13 +14,16 @@ export class PokemonService {
     private http: HttpClient
   ) { }
 
-  public getMany({ name, generation, version, type }: PokemonQueryParams): Observable<PokemonResponse> {
+  public getMany({ name, generation, version, type, page }: PokemonQueryParams): Observable<PokemonResponse> {
 
     let params: HttpParams = new HttpParams()
     if (name) params = params.append("name", name)
     if (generation) params = params.append("generation", generation)
     if (version) params = params.append("version", version)
     if (type) params = params.append("type", type)
+
+    const realPage = page ? page - 1 : 0;
+    if (page) params = params.append("page", realPage)
 
     return this.http.get<PokemonResponse>(
       `${environment.apiUrl}/Pokemon`,
