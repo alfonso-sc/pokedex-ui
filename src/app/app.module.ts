@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatPaginatorModule,
