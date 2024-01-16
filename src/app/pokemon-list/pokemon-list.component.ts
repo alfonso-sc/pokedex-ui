@@ -60,7 +60,6 @@ export class PokemonListComponent {
 
   updateQuery(): void {
     const displayPage = this.page ? this.page + 1 : undefined;
-
     const queryParams: PokemonQueryParams = {
       name: this.name || undefined,
       generation: this.generation || undefined,
@@ -115,5 +114,10 @@ export class PokemonListComponent {
 
   log(val: any): void {
     console.log(val);
+  }
+
+  clearName(): void {
+    this.name = undefined;
+    this.updateQuery();
   }
 }
