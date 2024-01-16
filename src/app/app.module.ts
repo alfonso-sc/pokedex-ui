@@ -15,13 +15,15 @@ import { AppComponent } from './app.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PokemonListItemComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    PokemonDetailComponent
   ],
   imports: [
     AppRoutingModule,
