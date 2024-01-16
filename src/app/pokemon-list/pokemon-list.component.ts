@@ -1,12 +1,14 @@
+import { map, Observable } from 'rxjs';
+
 import { Component } from '@angular/core';
-import { PokemonService } from '../pokemon.service';
-import { Observable, map } from 'rxjs';
-import { PokemonQueryParams } from '../models/pokemon-query-params';
-import { PokemonTypesService } from '../pokemon-types.service';
-import { PokemonGenerationsService } from '../pokemon-generations.service';
-import { PokemonVersionsService } from '../pokemon-versions.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { PokemonQueryParams } from '../models/pokemon-query-params';
 import { PokemonResponse } from '../models/pokemon-response';
+import { PokemonGenerationsService } from '../pokemon-generations.service';
+import { PokemonTypesService } from '../pokemon-types.service';
+import { PokemonVersionsService } from '../pokemon-versions.service';
+import { PokemonService } from '../pokemon.service';
 
 @Component({
   selector: 'app-pokemon-list',

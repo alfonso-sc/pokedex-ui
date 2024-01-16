@@ -1,12 +1,15 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PokemonListItemComponent } from './pokemon-list-item/pokemon-list-item.component';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +18,13 @@ import { FormsModule } from '@angular/forms';
     PokemonListComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    BrowserAnimationsModule,
+    BrowserModule,
     FormsModule,
+    HttpClientModule,
+    MatCardModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
