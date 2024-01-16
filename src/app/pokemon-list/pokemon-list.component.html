@@ -1,47 +1,72 @@
 <!-- Search Bar -->
-<!-- name -->
-<label for="name">Enter a name search term:</label>
-<input name="name" [(ngModel)]="name" (change)="updateQuery()" />
+<form class="example-form">
+  <!-- name -->
+  <mat-form-field>
+    <mat-label>Name:</mat-label>
+    <input
+      name="name"
+      matInput
+      type="text"
+      [(ngModel)]="name"
+      (change)="updateQuery()"
+    />
+    @if (name) {
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="clearName()">
+      <mat-icon>close</mat-icon>
+    </button>
+    }
+  </mat-form-field>
 
-<!-- generation -->
-<label for="generations">Choose a generation:</label>
-<select name="generations" [(ngModel)]="generation" (change)="updateQuery()">
-  <option></option>
-  <option
-    *ngFor="let pokemonGeneration of pokemonGenerations$ | async"
-    [value]="pokemonGeneration"
-  >
-    {{ pokemonGeneration }}
-  </option>
-</select>
+  <!-- generation -->
+  <mat-form-field>
+    <mat-label for="generations">Generation: </mat-label>
+    <mat-select
+      name="generations"
+      [(value)]="generation"
+      (valueChange)="updateQuery()"
+    >
+      <mat-option [value]="undefined">All</mat-option>
+      <mat-option
+        *ngFor="let pokemonGeneration of pokemonGenerations$ | async"
+        [value]="pokemonGeneration"
+        >{{ pokemonGeneration }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<!-- versions -->
-<label for="versions">Choose a version:</label>
-<select name="versions" [(ngModel)]="version" (change)="updateQuery()">
-  <option></option>
-  <option
-    *ngFor="let pokemonVersion of pokemonVersions$ | async"
-    [value]="pokemonVersion"
-  >
-    {{ pokemonVersion }}
-  </option>
-</select>
+  <!-- versions -->
+  <mat-form-field>
+    <mat-label for="versions">Version: </mat-label>
+    <mat-select
+      name="versions"
+      [(value)]="version"
+      (valueChange)="updateQuery()"
+    >
+      <mat-option [value]="undefined">All</mat-option>
+      <mat-option
+        *ngFor="let pokemonVersion of pokemonVersions$ | async"
+        [value]="pokemonVersion"
+        >{{ pokemonVersion }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<!-- types -->
-<label for="types">Choose a type:</label>
-<select name="types" [(ngModel)]="type" (change)="updateQuery()">
-  <option></option>
-  <option
-    *ngFor="let pokemonType of pokemonTypes$ | async"
-    [value]="pokemonType"
-  >
-    {{ pokemonType }}
-  </option>
-</select>
+  <!-- types -->
+  <mat-form-field>
+    <mat-label for="types">Type: </mat-label>
+    <mat-select name="types" [(value)]="type" (valueChange)="updateQuery()">
+      <mat-option [value]="undefined">All</mat-option>
+      <mat-option
+        *ngFor="let pokemonType of pokemonTypes$ | async"
+        [value]="pokemonType"
+        >{{ pokemonType }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
 
 <!-- Pokemon List Display -->
 <div *ngIf="pokemonResponse$ | async as pokemonResult; else noResults">
-
   <!-- Pagination -->
   <div class="page-controls">
     <button
