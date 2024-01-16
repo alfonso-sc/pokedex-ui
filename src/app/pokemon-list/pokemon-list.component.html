@@ -66,7 +66,14 @@
 </form>
 
 <!-- Pokemon List Display -->
-<div *ngIf="pokemonResponse$ | async as pokemonResult; else noResults">
+<div *ngIf="pokemonResponse$ | async as pokemonResult">
+  <!-- Pokemon List View -->
+  <mat-grid-list cols="3" rowHeight="2:1">
+    <mat-grid-tile *ngFor="let poke of pokemonResult.data"
+      ><app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item
+    ></mat-grid-tile>
+  </mat-grid-list>
+
   <!-- Pagination -->
   <div class="page-controls">
     <button
@@ -84,16 +91,4 @@
     </button>
   </div>
   <p>{{ pokemonResult.totalPages }} Pages</p>
-
-  <!-- Pokemon List View -->
-  <div class="results">
-    <div *ngFor="let poke of pokemonResult.data">
-      <app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item>
-    </div>
-  </div>
 </div>
-
-<!-- No Result Template -->
-<ng-template #noResults>
-  <div>No results found...</div>
-</ng-template>
