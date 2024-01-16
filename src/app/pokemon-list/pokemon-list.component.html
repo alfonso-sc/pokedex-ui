@@ -68,7 +68,7 @@
 <!-- Pokemon List Display -->
 <div *ngIf="pokemonResponse$ | async as pokemonResult">
   <!-- Pokemon List View -->
-  <mat-grid-list cols="3" rowHeight="2:1">
+  <mat-grid-list cols="6" rowHeight="1.5:1">
     <mat-grid-tile *ngFor="let poke of pokemonResult.data"
       ><app-pokemon-list-item [pokemon]="poke"></app-pokemon-list-item
     ></mat-grid-tile>
