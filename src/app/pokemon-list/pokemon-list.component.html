@@ -58,8 +58,8 @@
       <mat-option [value]="undefined">All</mat-option>
       <mat-option
         *ngFor="let pokemonType of pokemonTypes$ | async"
-        [value]="pokemonType"
-        >{{ pokemonType }}
+        [value]="pokemonType.typeName"
+        >{{ pokemonType.typeName }}
       </mat-option>
     </mat-select>
   </mat-form-field>
