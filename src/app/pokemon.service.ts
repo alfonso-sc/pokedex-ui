@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { PokemonResponse } from './models/pokemon-response';
 import { PokemonQueryParams } from './models/pokemon-query-params';
 import { Observable } from 'rxjs';
+import { PokemonDetailListItem } from './models/pokemon-detail-list-item';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,15 @@ export class PokemonService {
   constructor(
     private http: HttpClient
   ) { }
+
+  public getById(id: number): Observable<PokemonDetailListItem> {
+    let params: HttpParams = new HttpParams()
+    params.append("id", id)
+    return this.http.get<PokemonDetailListItem>(
+      `${environment.apiUrl}/Pokemon/${id}`,
+      { params }
+    )
+  }
 
   public getMany({ name, generation, version, type, page }: PokemonQueryParams): Observable<PokemonResponse> {
 
@@ -30,4 +40,6 @@ export class PokemonService {
       { params }
     )
   }
+
+
 }

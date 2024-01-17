@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PokemonListItem } from '../models/pokemon-list-item';
+import { PokemonDataListItem } from '../models/pokemon-data-list-item';
 
 @Component({
   selector: 'app-pokemon-list-item',
@@ -7,5 +7,5 @@ import { PokemonListItem } from '../models/pokemon-list-item';
   styleUrl: './pokemon-list-item.component.scss'
 })
 export class PokemonListItemComponent {
-  @Input({ required: true }) pokemon!: PokemonListItem;
+  @Input({ required: true }) pokemon!: PokemonDataListItem;
 }

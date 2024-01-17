@@ -1,1 +1,56 @@
-<p>pokemon-detail works!</p>
+<h2 *ngIf="pokemonDetails$ | async as pokemonDetails">
+  {{ pokemonDetails.pokemonName }} details
+</h2>
+
+<div *ngIf="pokemonDetails$ | async as pokemonDetails">
+  <img
+    mat-card-lg-image
+    src="{{ pokemonDetails.images['official-artwork'][0] }}"
+    alt="Photo of {{ pokemonDetails.pokemonName }}"
+  />
+  <p>id: {{ pokemonDetails.id }}</p>
+  <p>pokemonName: {{ pokemonDetails.pokemonName }}</p>
+  <p>baseExperience: {{ pokemonDetails.baseExperience }}</p>
+  <p>weight: {{ pokemonDetails.weight }}</p>
+  <p>height: {{ pokemonDetails.height }}</p>
+  <p>flavorText: {{ pokemonDetails.flavorText }}</p>
+  <p>genus: {{ pokemonDetails.genus }}</p>
+  <p>evolutionLevel: {{ pokemonDetails.evolutionLevel }}</p>
+  <p>evolvesInto: {{ pokemonDetails.evolvesInto }}</p>
+  <p>evolutionTrigger: {{ pokemonDetails.evolutionTrigger }}</p>
+
+  <!-- <p>abilities: {{ pokemonDetails.abilities | json }}</p> -->
+  <!-- <mat-list>
+    <span *ngFor="let ability of pokemonDetails.abilities">
+      <mat-list-item> {{ ability.abilityName }} </mat-list-item>
+      <mat-list-item> {{ ability.effect }} </mat-list-item>
+      <mat-list-item> {{ ability.flavorText }} </mat-list-item>
+    </span>
+  </mat-list> -->
+
+  <mat-card>
+    <mat-card-title>Abilities</mat-card-title>
+    <span *ngFor="let ability of pokemonDetails.abilities">
+      <mat-card-header>{{ ability.abilityName }}</mat-card-header>
+      <!-- <mat-card-subtitle></mat-csard-subtitle> -->
+      <mat-card-content>
+        <p>
+          {{ ability.flavorText }}
+        </p>
+        <p>
+          {{ ability.effect }}
+        </p>
+      </mat-card-content>
+    </span>
+  </mat-card>
+
+  
+    <p>moves: {{ pokemonDetails.moves | json }}</p>
+    <p>types: {{ pokemonDetails.types | json }}</p>
+    <p>generations: {{ pokemonDetails.generations | json }}</p>
+    <p>versions: {{ pokemonDetails.versions | json }}</p>
+    <p>images: {{ pokemonDetails.images | json }}</p> 
+   
+</div>
+
+<button type="button" (click)="goBack()">go back</button>
