@@ -9,6 +9,7 @@ import { PokemonGenerationsService } from '../pokemon-generations.service';
 import { PokemonTypesService } from '../pokemon-types.service';
 import { PokemonVersionsService } from '../pokemon-versions.service';
 import { PokemonService } from '../pokemon.service';
+import { PokemonType } from '../models/pokemon-type';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -22,7 +23,7 @@ export class PokemonListComponent {
   // dropdown items
   pokemonGenerations$!: Observable<string[]>;
   pokemonVersions$!: Observable<string[]>;
-  pokemonTypes$!: Observable<string[]>;
+  pokemonTypes$!: Observable<PokemonType[]>;
 
   // search params
   name?: string;
