@@ -1,0 +1,13 @@
+.centered-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black; /* Add this line for the black outline */
+  }
+  
+  .centered-content {
+    width: 100%; /* Adjust the width if needed */
+  }
+  
